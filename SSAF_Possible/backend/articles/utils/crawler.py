@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import django 
 import os
-from backend.articles.models import Article
+from . .models import Article
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SSAF.settings')
 django.setup()

@@ -7,7 +7,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=20)
     content = models.TextField()
-    published_date = models.DateTimeField()
+    published_date = models.TextField()
     link = models.URLField("Site URL")
     ent_name = models.CharField(max_length=20)
     class Meta:
