@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     # apps
     'articles',
     # 3rd party
-
+    'rest_framework',
+    'django_seed',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
