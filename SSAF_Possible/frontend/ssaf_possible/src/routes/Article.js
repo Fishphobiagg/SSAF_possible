@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import './Article.css';
+
 function Article() {
 
   const [data, setData] = useState([]);
@@ -15,10 +16,11 @@ console.log(data)
     <div>{data.map((a, i) => {
       return(
         <div className="content-field">
-          <hr />
-          <h4 className="title">{a.title}</h4>
+          <hr/>
+          <h4 className="title"><a href={a.link}>{a.title}</a>
+          </h4>
+          <p>{a.author} {a.published_date}</p>
           <div>{a.content}</div>
-
         </div>
       
       

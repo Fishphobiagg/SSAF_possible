@@ -19,7 +19,7 @@ function App() {
       </Navbar>
       </div>
        <div className='category pc'>태그 들어갈 공간</div>
-      <div className='col col-main'><Article></Article></div>
+      <div className='article'><Article></Article></div>
     </div>
 
   );
