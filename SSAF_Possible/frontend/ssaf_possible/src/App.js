@@ -2,11 +2,14 @@ import './App.css';
 import { Button, Nav, Navbar, NavDropdown, Container } from 'react-bootstrap';
 import Article from './routes/Article.js'
 import './font.css'
+import './Globalstyle.js'
+import GlobalStyle from './Globalstyle.js';
 
 function App() {
 
   return (
     <div className="App">
+      <GlobalStyle />
       <div>
       <Navbar bg="light" variant="light" className='nav'>
         <Container>

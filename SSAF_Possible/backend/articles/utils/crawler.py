@@ -10,7 +10,7 @@ django.setup()
 
 def crawl_data():
     # kakao
-    for i in range(1, 6):
+    for i in range(1, 30):
         url = 'https://tech.kakao.com/blog/' + 'page' + '/' + str(i) + '/'    
         res = requests.get(url)
         res.raise_for_status()
@@ -34,6 +34,7 @@ def crawl_data():
                     content=content,
                 )
                 article.save()
+    #LINE
     for i in range(1, 6):
         if i == 1:
             url = 'https://engineering.linecorp.com/ko/blog'

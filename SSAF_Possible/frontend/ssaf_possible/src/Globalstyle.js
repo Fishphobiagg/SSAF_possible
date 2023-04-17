@@ -1,9 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${normalize}
-  * {
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
-}
+  body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
 `;
+
+export default GlobalStyle

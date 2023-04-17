@@ -9,6 +9,7 @@ from .serializers import ArticleListSerializer
 
 @api_view(['GET'])
 def article_list(request):
+    # crawl_data()
     articles = Article.objects.all()
     selializer = ArticleListSerializer(articles, many=True)
     return Response(selializer.data)
