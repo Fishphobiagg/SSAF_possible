@@ -5,14 +5,19 @@ from django.http import HttpResponse, JsonResponse
 from .utils.crawler import crawl_data
 from .models import Article
 from .serializers import ArticleListSerializer
-# Create your views here.
+from django.core.paginator import Paginator
+from rest_framework.pagination import PageNumberPagination
+
+class ArticlePagination(PageNumberPagination):
+    page_size = 10
+    page_query_param = 'page'
+    page_size_query_param = 'per_page'
+    max_page_size = 100
 
 @api_view(['GET'])
 def article_list(request):
-    # crawl_data()
     articles = Article.objects.all()
-    selializer = ArticleListSerializer(articles, many=True)
-    return Response(selializer.data)
-
-def article(request, article_pk):
-    pass
+    paginator = ArticlePagination()
+    result_page = paginator.paginate_queryset(articles, request)
+    serializer = ArticleListSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
