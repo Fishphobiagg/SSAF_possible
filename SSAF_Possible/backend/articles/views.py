@@ -16,7 +16,7 @@ class ArticlePagination(PageNumberPagination):
 
 @api_view(['GET'])
 def article_list(request):
-    articles = Article.objects.all()
+    articles = Article.objects.order_by('published_date')
     paginator = ArticlePagination()
     result_page = paginator.paginate_queryset(articles, request)
     serializer = ArticleListSerializer(result_page, many=True)
