@@ -4,24 +4,30 @@ import Article from './routes/Article.js'
 import './font.css'
 import './Globalstyle.js'
 import GlobalStyle from './Globalstyle.js';
+import { useState } from 'react';
 
 function App() {
+  
+  let [article, articleSet] = useState(false)
+  let [recruitment, recruitmentSet] = useState(false)
 
   return (
     <div className="App">
       <GlobalStyle />
-      <div>
-      <Navbar bg="light" variant="light" className='nav'>
+      <header>
+      <Navbar bg="light" variant="light" className='nav sticky-top'>
         <Container>
-          <Navbar.Brand href="#home" className='navfont'>쌒!가능</Navbar.Brand>
+          <Navbar.Brand href="#home" onClick={()=>{
+              articleSet(false);
+              recruitmentSet(false);
+            }} className='navfont'>쌒!가능</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">기술블로그</Nav.Link>
             <Nav.Link href="#features">채용공고</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
-      </div>
-       <div className='category pc'>태그 들어갈 공간</div>
+      </header>
       <div className='article'><Article></Article></div>
     </div>
 

@@ -1,13 +1,17 @@
-
 .content-field{
     margin-top: 20px;
     text-align: left;
     margin-left: 20px;
     display: flex;
-    width: 1000px;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    max-width: 750px;
+}
+
+.col{
+    overflow: hidden;
+    clear: both;
 }
 
 a{
@@ -17,4 +21,34 @@ a{
 
 .ent_name {
     color: gray;
+}
+
+hr {
+    color: black;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+.pagination{
+    margin: 1.25em;
+    width: 1.25em;
+    text-align: center;
+    line-height: 1.25em;
+    display: inline-block;
+    font-size: 20px;
+    width: 200px;
+}
+
+.pagination .pagenavi{
+    text-align: center;
+}
+
+.larger {
+    margin: 10px 10px;
+}
+
+.content-tag{
+    cursor : pointer
 }

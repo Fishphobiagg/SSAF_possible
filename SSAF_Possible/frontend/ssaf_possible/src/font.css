@@ -1,8 +1,16 @@
-@font-face {
-  font-family: 'Roboto Condensed';
-  src: url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@charset "utf-8";
+
+@font-face{
+  font-family: "Dongle-Light";
+  src: url("./assets/fonts/Dongle-Light.ttf")
 }
 
-body {
-  font-family: 'Roboto Condensed', sans-serif;
+@font-face{
+  font-family: "Dongle-Bold";
+  src: url("./assets/fonts/Dongle-Bold.ttf")
+}
+
+@font-face {
+  font-family: "Apple SD Gothic Neo M";
+  src: url("./assets/fonts/AppleSDGothicNeoM.ttf");
 }
