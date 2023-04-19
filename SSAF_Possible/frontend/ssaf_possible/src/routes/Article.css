@@ -3,15 +3,15 @@
     text-align: left;
     margin-left: 20px;
     display: flex;
-    align-items: center;
     flex-direction: column;
     justify-content: center;
-    max-width: 750px;
+    max-width: 850px;
 }
 
 .col{
     overflow: hidden;
     clear: both;
+    max-width: 850px;
 }
 
 a{
@@ -50,5 +50,7 @@ h3 {
 }
 
 .content-tag{
-    cursor : pointer
+    cursor : pointer;
+    margin: 1.25em;
+    width: 10%;
 }

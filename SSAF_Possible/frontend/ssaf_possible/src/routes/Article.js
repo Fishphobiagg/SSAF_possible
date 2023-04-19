@@ -30,16 +30,17 @@ function Article() {
     <Row>
     <div className="col">
     {data.results && data.results.map((article, index) => (
-    <div className="content-field" key={index}>
-    <p onClick={()=>{
-      console.log(1)
+    <div><p onClick={()=>{console.log(1)
     }} className="content-tag">#{article.ent_name}</p>
+
+    <div className="content-field" key={index}>
     <a href={article.link}>
     <h3>{article.title}</h3>
     <p>{article.author} {article.published_date}</p>
     <p>{article.content}</p>  
     </a>
     <hr/>
+    </div>
     </div>
 ))}
   <div className="pagination">
