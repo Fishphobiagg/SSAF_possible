@@ -58,13 +58,13 @@ function Article() {
           ))}
           <div className="pagination">
             <div className="pagenavi">
-              <a href="" className="page larger previouspage"></a>
+              {page === 1|| page ===2? <li></li>:<li href="" className="page larger previouspage" onClick={() => handlePageClick(page-1)}></li>}
               {arr.map(a => (
                 <li href="" className="page larger" key={a} onClick={() => handlePageClick(a)}>
                   {a}
                 </li>
               ))}
-              <a href="" className="page larger nextpage"></a>
+              {page === maxPage| page===maxPage-1?<li></li>:<li href="" className="page larger nextpage" onClick={()=>{handlePageClick(page+1)}}></li > }
             </div>
           </div>
         </div>
