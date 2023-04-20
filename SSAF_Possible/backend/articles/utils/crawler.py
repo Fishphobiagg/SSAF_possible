@@ -8,6 +8,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 
+from selenium import webdriver
+from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
+from datetime import datetime
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SSAF.settings')
 django.setup()
 
@@ -100,10 +105,36 @@ def crawl_data():
                 author = author,
                 content = content,
                 )
+<<<<<<< HEAD
                 article.save()
         time.sleep(1)
         next = driver.execute_script("return document.querySelector('a.nextpostslink')")
         next.click()
+=======
+    # 우아한 형제들 기술블로그
+
+    options = webdriver.ChromeOptions()
+    # options.add_argument('--headless')
+    driver = webdriver.Chrome('./chromedriver')
+
+    driver.get('https://techblog.woowahan.com/page/5/')
+
+
+
+    for _ in range(5):
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        for k in soup.find_all('div', attrs={'class':'item'}):
+            title = k.find('a').find('h1').get_text()
+            link = k.find('a')['href']
+            article_id = link.split('/')[-2] + 'woowahan'
+            published_date = k.find('a').find('p').find('span').get_text().strip()
+            author = k.find('a').find('p').select_one('span:ntH-of-type(2)').get_text().strip()
+            content = k.find('a').select_one('p:nth-of-type(2)').get_text()
+            print(author)
+            print(content)
+
+>>>>>>> 928bda1ae896139313c903f185f8d6a00f5b78d1
 
 
                 # article.save()
