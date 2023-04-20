@@ -38,7 +38,7 @@ h3 {
     line-height: 1.25em;
     display: inline-block;
     font-size: 20px;
-    width: 200px;
+    width: 300px;
 }
 
 .pagination .pagenavi{
@@ -53,4 +53,15 @@ h3 {
     cursor : pointer;
     margin: 1.25em;
     width: 10%;
+}
+
+.nextpage::after{
+    content: '\003E';
+}
+.previouspage::after{
+    content: '\003C';
+}
+
+.page{
+    cursor: pointer;
 }

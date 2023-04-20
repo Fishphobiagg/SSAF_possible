@@ -105,12 +105,10 @@ def crawl_data():
                 author = author,
                 content = content,
                 )
-<<<<<<< HEAD
                 article.save()
         time.sleep(1)
         next = driver.execute_script("return document.querySelector('a.nextpostslink')")
         next.click()
-=======
     # 우아한 형제들 기술블로그
 
     options = webdriver.ChromeOptions()
@@ -133,8 +131,6 @@ def crawl_data():
             content = k.find('a').select_one('p:nth-of-type(2)').get_text()
             print(author)
             print(content)
-
->>>>>>> 928bda1ae896139313c903f185f8d6a00f5b78d1
 
 
                 # article.save()

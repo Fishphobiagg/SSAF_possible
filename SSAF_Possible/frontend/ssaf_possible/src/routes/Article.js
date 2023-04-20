@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import './Article.css';
 import { Pagination, Container, Row, Col} from "react-bootstrap";
 
@@ -6,60 +6,72 @@ import { Pagination, Container, Row, Col} from "react-bootstrap";
 function Article() {
   const basic_url = 'http://127.0.0.1:8000/api/techblog/articles/?page='
   const [data, setData] = useState({results: [], count: 0});
-  const [page, setPage] = useState(1);
+  let [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const [url, setUrl] = useState(basic_url+page)
-  
-
-  useEffect(()=>{
-    fetch(url)
-    .then(response => response.json())
-    .then(data => setData(data));
-  }, [url]);
   let maxPage = Math.ceil(data.count / perPage);
-
-  const handlePageClick = (pageNum) => {
-    setPage(pageNum);
-    setUrl(basic_url+pageNum);
+  let arr;
+  if (page===1||page===2){
+    arr = [1, 2, 3, 4, 5]
   }
+  else if (page===maxPage||page===maxPage-1){
+    arr = [maxPage-4, maxPage-3, maxPage-2, maxPage-1, maxPage];
+  }
+  else {
+    arr = [page-2, page-1, page, page+1, page+2]
+  }
+  
+  console.log(page)
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      console.log(jsonData)
+      setData(jsonData);
+    };
+  
+    fetchData();
+  }, [url]);
 
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+    setUrl(basic_url + pageNumber);
+  };
   
   return (
     <div>
       <Container>
-    <Row>
-    <div className="col">
-    {data.results && data.results.map((article, index) => (
-    <div><p onClick={()=>{console.log(1)
-    }} className="content-tag">#{article.ent_name}</p>
-
-    <div className="content-field" key={index}>
-    <a href={article.link}>
-    <h3>{article.title}</h3>
-    <p>{article.author} {article.published_date}</p>
-    <p>{article.content}</p>  
-    </a>
-    <hr/>
-    </div>
-    </div>
-))}
-  <div className="pagination">
-    <div className="pagenavi">
-    <a className="page larger" href=""> 1 </a>
-    <a className="page larger" href=""> 2 </a>
-    <a className="page larger" href=""> 3 </a>
-    <a className="page larger" href=""> 4 </a>
-    <a className="page larger" href=""> 5 </a>
-    </div>
-
+        <Row>
+          <div className="col">
+            {data.results && data.results.map((article, index) => (
+              <div><p onClick={()=>{console.log(1)}} className="content-tag">#{article.ent_name}</p>
+              <div className="content-field" key={index}>
+                <a href={article.link}>
+                  <h3 key={article.id}>{article.title}</h3>
+                  <p>{article.published_date} {article.author}</p>
+                  <p>{article.content}</p>
+                </a>
+                <hr/>
+              </div>
+            </div>
+          ))}
+          <div className="pagination">
+            <div className="pagenavi">
+              <a href="" className="page larger previouspage"></a>
+              {arr.map(a => (
+                <li href="" className="page larger" key={a} onClick={() => handlePageClick(a)}>
+                  {a}
+                </li>
+              ))}
+              <a href="" className="page larger nextpage"></a>
+            </div>
+          </div>
+        </div>
+      </Row>
+    </Container>
   </div>
-
-  </div>
-    </Row>
-      </Container>
-    </div>
   );
 }
-
 
 export default Article;
