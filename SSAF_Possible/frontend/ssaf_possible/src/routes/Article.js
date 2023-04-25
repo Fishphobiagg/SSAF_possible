@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import './Article.css';
-import { Pagination, Container, Row, Col} from "react-bootstrap";
+import {Container, Row} from "react-bootstrap";
 
 
 function Article() {
@@ -58,13 +58,13 @@ function Article() {
           ))}
           <div className="pagination">
             <div className="pagenavi">
-              {page === 1|| page ===2? <li></li>:<li href="" className="page larger previouspage" onClick={() => handlePageClick(page-1)}></li>}
+              {page === 1? <li className="blind"></li>:<li href="" className="page larger previouspage" onClick={() => handlePageClick(page-1)}></li>}
               {arr.map(a => (
                 <li href="" className="page larger" key={a} onClick={() => handlePageClick(a)}>
                   {a}
                 </li>
               ))}
-              {page === maxPage| page===maxPage-1?<li></li>:<li href="" className="page larger nextpage" onClick={()=>{handlePageClick(page+1)}}></li > }
+              {page === maxPage?<li className="blind"></li>:<li href="" className="page larger nextpage" onClick={()=>{handlePageClick(page+1)}}></li > }
             </div>
           </div>
         </div>

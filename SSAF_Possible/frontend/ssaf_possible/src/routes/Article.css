@@ -67,3 +67,7 @@ h3 {
 li{
     display: inline-block;
 }
+
+.blind {
+    width: 30px;
+}
