@@ -5,12 +5,10 @@ import './font.css'
 import './Globalstyle.js'
 import GlobalStyle from './Globalstyle.js';
 import { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+
 
 function App() {
   
-
-  let navigate = useNavigate();
   // let [article, articleSet] = useState(false)
   // let [recruitment, recruitmentSet] = useState(false)
 
@@ -19,6 +17,7 @@ function App() {
   // 그리고 JS에서는 마지막에 ; 붙이는거 까먹지 마십쇼 
   const [article, setArticle] = useState(false);
   const [recruitment, setRecruitment] = useState(false);
+  const [home, setHome] = useState(true);
 
   return (
     <div className="App">
@@ -29,18 +28,21 @@ function App() {
           <Navbar.Brand href="#home" onClick={()=>{
               setArticle(false);
               setRecruitment(false);
+              setHome(true);
             }} className='navfont'>쌒!가능</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home" onClick={()=>{
-              navigate('/Article')
+              setArticle(true);
+              setRecruitment(false);
+              setHome(false);
             }}>기술블로그</Nav.Link>
             <Nav.Link href="#features">채용공고</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
       </header>
+      {article && <Article/>}
     </div>
-
   );
 }
 

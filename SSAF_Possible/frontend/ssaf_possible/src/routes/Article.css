@@ -71,3 +71,57 @@ li{
 .blind {
     width: 30px;
 }
+
+
+.main {
+    position: relative;
+    width: 1200px;
+    display: flex;
+    margin: 0 auto;
+    padding: 80px 40px 100px;
+    box-sizing: border-box;
+}
+
+.post-wrap::after{
+    position: absolute;
+    top: 100%;
+    left : 40px;
+    right : 40px;
+    height: 1px;
+}
+
+.sidebar {
+    flex-shrink: 0;
+    width: 287px;
+    margin : 40px 13px 0 auto;
+    left: 0px;
+}
+
+.post-wrap{
+    max-width: 790px!important;
+    padding-left: 40px;
+}
+
+.sidebar .searchbar{
+    top: 50%;
+    margin-top: -12px;
+    left: 0;
+    width: 24px;
+    height: 100%;
+    font-size: 20px;
+    color: #000;
+}
+
+.searchbar input{
+    height: 24px;
+    font-size: 16px;
+    letter-spacing: -.01em;
+}
+
+.searchbar .search-btn{
+    width: 100%;
+    margin-top: -12px;
+    left: 0;
+    color: #000;   
+    border: 0ch;
+}

@@ -13,6 +13,8 @@ function Article() {
   // useState로 받을 때 const 써도 되고 보통 const 쓸 수 있으면 무조건 const 쓰는 걸 추천
   // let [page, setPage] = useState(1);
   const [page, setPage] = useState(1);
+  const [keyword, setKeyword] = useState()
+
 
   // 변경될 일이 없는 데이터는 굳이 상태로 선언해주지 않아도 됨
   const [perPage] = useState(10);
@@ -24,7 +26,7 @@ function Article() {
   // 이를 주석으로 처리할 수도 있지만, 일반적으로 함수로 분리하고 함수명으로 이게 무슨 일을 하는지 표현하는게 좋음
   // 특히 아래 로직은 page의 상태가 변경될 때마다 도는 로직인데, 이럴 경우 page 값에 따라 useMemo, useCallback으로 메모이제이션 가능
   let arr;
-  if (page===1||page===2){
+  const paging = ()=>{if (page===1||page===2){
     arr = [1, 2, 3, 4, 5]
   }
   else if (page===maxPage||page===maxPage-1){
@@ -32,8 +34,9 @@ function Article() {
   }
   else {
     arr = [page-2, page-1, page, page+1, page+2]
-  }
-  
+  }}
+  paging()
+
   console.log(page)
 
   // 다음처럼 useEffect가 작성되어 있을 경우 useEffect 내 콜백이 작동하는 경우는 아래와 같음
@@ -59,9 +62,8 @@ function Article() {
   // 남들이 봤을 때 코드 파악 힘들고 관리하기도 안좋음
   // 그래서 이런 경우에는 여러 함수형 컴포넌트로 분리하는거 추천
   return (
-    <div>
-      <Container>
-        <Row>
+    <div className="main">
+      <div className="post-wrap">
           <div className="col">
             {data.results && data.results.map((article, index) => ( // 리액트에서 map을 통해서 반복적으로 컴포넌트 만들 때 index 전달해주는거 중요. Good
               <div><p onClick={()=>{console.log(1)}} className="content-tag">#{article.ent_name}</p>
@@ -87,8 +89,17 @@ function Article() {
             </div>
           </div>
         </div>
-      </Row>
-    </Container>
+    </div>
+    <aside className="sidebar">
+      <div className="searchbar">
+        <button className="search-btn" onClick={()=>{
+          console.log(1)
+        }}></button>
+        <input type="text" placeholder="Keyword" onChange={(e)=>{
+          setKeyword(e.target.value)
+        }}/>
+      </div>
+    </aside>
   </div>
   );
 }
