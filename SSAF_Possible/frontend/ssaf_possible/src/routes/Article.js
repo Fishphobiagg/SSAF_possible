@@ -1,13 +1,14 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect} from "react";
 import './Article.css';
-import {Container, Row} from "react-bootstrap";
 
 
 function Article() {
   // 보통 URL 같은 건 하드타이핑 하지 않고 따로 변수로 관리하는 경우가 많음
   // 만약 이렇게 일일이 하드타이핑 해두면, 이후에 서버 포트 번호나 url이 변경됐을 때 모든 코드 다 뒤져가면서 수정해야 함
+
+  // basic_url을 상태관리하여 검색주잉ㄹ 경우에는 검색 api, 전체 열람 중일 경우에는 전체 열람 api의 url을 할당해야할듯
   const basic_url = 'http://127.0.0.1:8000/api/techblog/articles/?page='
-  
+  const search_api = 'http://127.0.0.1:8000/api/techblog/search/'
   const [data, setData] = useState({results: [], count: 0});
 
   // useState로 받을 때 const 써도 되고 보통 const 쓸 수 있으면 무조건 const 쓰는 걸 추천
@@ -37,8 +38,6 @@ function Article() {
   }}
   paging()
 
-  console.log(page)
-
   // 다음처럼 useEffect가 작성되어 있을 경우 useEffect 내 콜백이 작동하는 경우는 아래와 같음
   // 페이지가 처음 렌더링 됐을 때, url 값이 setUrl을 통해서 변경되었을 때
   useEffect(() => {
@@ -52,6 +51,9 @@ function Article() {
     fetchData();
   }, [url]);
 
+  const handleSearchapi = (key) =>{
+    setUrl(search_api+key);
+  }
 
   const handlePageClick = (pageNumber) => {
     setPage(pageNumber);
@@ -92,8 +94,7 @@ function Article() {
     </div>
     <aside className="sidebar">
       <div className="searchbar">
-        <button className="search-btn" onClick={()=>{
-          console.log(1)
+        <button className="search-btn" onClick={()=>{handleSearchapi(keyword)
         }}></button>
         <input type="text" placeholder="Keyword" onChange={(e)=>{
           setKeyword(e.target.value)
