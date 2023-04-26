@@ -3,13 +3,9 @@ import requests
 import django 
 import os
 from . .models import Article
-from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-
-from selenium import webdriver
-from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from datetime import datetime
 
