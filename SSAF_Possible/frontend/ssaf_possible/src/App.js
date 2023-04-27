@@ -29,14 +29,14 @@ function App() {
               setArticle(false);
               setRecruitment(false);
               setHome(true);
-            }} className='navfont'>쌒!가능</Navbar.Brand>
+            }} className='nav-home'>쌒!가능</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home" onClick={()=>{
+            <Nav.Link className='nav-style' onClick={()=>{
               setArticle(true);
               setRecruitment(false);
               setHome(false);
             }}>기술블로그</Nav.Link>
-            <Nav.Link href="#features">채용공고</Nav.Link>
+            <Nav.Link className='nav-style' >채용공고</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
