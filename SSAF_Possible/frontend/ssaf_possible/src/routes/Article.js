@@ -7,20 +7,20 @@ function Article() {
   // 만약 이렇게 일일이 하드타이핑 해두면, 이후에 서버 포트 번호나 url이 변경됐을 때 모든 코드 다 뒤져가면서 수정해야 함
 
   // basic_url을 상태관리하여 검색주잉ㄹ 경우에는 검색 api, 전체 열람 중일 경우에는 전체 열람 api의 url을 할당해야할듯
-  const basic_url = 'http://127.0.0.1:8000/api/techblog/articles/?page='
-  const search_api = 'http://127.0.0.1:8000/api/techblog/search/'
+  const articles_api = 'http://127.0.0.1:8000/api/techblog/articles/?page='
+  const set_api = (keyword) => 'http://127.0.0.1:8000/api/techblog/search/' + keyword + '?page='
   const [data, setData] = useState({results: [], count: 0});
+  const [basicUrl, setBasicUrl] = useState(articles_api)
 
   // useState로 받을 때 const 써도 되고 보통 const 쓸 수 있으면 무조건 const 쓰는 걸 추천
   // let [page, setPage] = useState(1);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState()
 
-
   // 변경될 일이 없는 데이터는 굳이 상태로 선언해주지 않아도 됨
   const [perPage] = useState(10);
-
-  const [url, setUrl] = useState(basic_url+page)
+  const [url, setUrl] = useState(basicUrl+page)
+  console.log(url)
   let maxPage = Math.ceil(data.count / perPage);
 
   // 이렇게 짜놓으면 아래 if 분기 로직이 뭘 의미하는건지 알수가 없음
@@ -51,13 +51,11 @@ function Article() {
     fetchData();
   }, [url]);
 
-  const handleSearchapi = (key) =>{
-    setUrl(search_api+key);
-  }
-
   const handlePageClick = (pageNumber) => {
     setPage(pageNumber);
-    setUrl(basic_url + pageNumber);
+    console.log(url)
+    setUrl(basicUrl + pageNumber);
+    console.log(url)
   };
   
   // 이렇게 길어지는거 별로 안좋음
@@ -94,8 +92,11 @@ function Article() {
     </div>
     <aside className="sidebar">
       <div className="searchbar">
-        <button className="search-btn" onClick={()=>{handleSearchapi(keyword)
-        }}></button>
+      <button className="search-btn" onClick={()=>{ 
+          setPage(1);
+          setBasicUrl(set_api(keyword));
+          setUrl(basicUrl+page);
+        }}>검색</button>
         <input type="text" placeholder="Keyword" onChange={(e)=>{
           setKeyword(e.target.value)
         }}/>

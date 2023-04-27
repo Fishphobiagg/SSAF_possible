@@ -103,13 +103,10 @@ li{
 }
 
 .sidebar .searchbar{
-    top: 50%;
-    margin-top: -12px;
-    left: 0;
-    width: 24px;
-    height: 100%;
-    font-size: 20px;
-    color: #000;
+    position: relative;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 14px 32px 22px;
 }
 
 .searchbar input{
@@ -118,10 +115,12 @@ li{
     letter-spacing: -.01em;
 }
 
-.searchbar .search-btn{
-    width: 100%;
+.search-btn{
+    position: absolute;
+    top: 50%;
     margin-top: -12px;
-    left: 0;
-    color: #000;   
-    border: 0ch;
+    right: 0;
+    width: 44px;
+    height: 100%;
+    color: #000;
 }
