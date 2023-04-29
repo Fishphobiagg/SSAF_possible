@@ -16,8 +16,8 @@ class ArticlePagination(PageNumberPagination):
 
 @api_view(['GET'])
 def article_list(request):
-    crawl_data()
-    line_crawler()
+    # crawl_data()
+    # line_crawler()
     articles = Article.objects.order_by('-published_date')
     paginator = ArticlePagination()
     result_page = paginator.paginate_queryset(articles, request)
