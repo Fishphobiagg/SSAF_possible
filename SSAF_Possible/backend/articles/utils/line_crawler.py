@@ -32,7 +32,6 @@ def line_crawler():
             author = post.find('a', attrs={'class':'text_name'}).get_text()
             published_date = post.find('span', attrs={'class':'text_date'}).get_text()
             published_date = datetime.strptime(published_date, '%Y-%M-%d').date()
-            ent_name = 'LINE'
             article_id = link.split('/')[-1]
             if not Article.objects.filter(article_id=article_id, ent_name='LINE').exists():
                 article = Article.objects.create(

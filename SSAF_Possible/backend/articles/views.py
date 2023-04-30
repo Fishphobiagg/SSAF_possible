@@ -46,15 +46,12 @@ def scrap(request, article_pk):
         if request.user.is_authenticated:
             article = Article.objects.get(pk=article_pk)
             user = request.user
-
             if article.scrap_users.filter(pk=user.pk).exists():
                 article.scrap_users.remove(user)
             else:
                 article.scrap_users.add(user)
-
             return Response(ScrapListSerializer(user.scrap_articles.all(), many=True).data)
     # 프론트에서 로그인하지 않은 유저는 스크랩을 못하도록 처리
-
 
 @api_view(['GET'])
 def scrap_list(request):
