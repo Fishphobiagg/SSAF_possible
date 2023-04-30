@@ -7,6 +7,9 @@
 
 .nav{
   margin-bottom: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  height: 88px;
 }
 
 .article{
@@ -48,4 +51,9 @@ header{
 
 .nav-style:focus{
   outline: none;
+}
+
+.right{
+  margin-left: 20px;
+  cursor: pointer;
 }
