@@ -21,59 +21,7 @@ function App() {
   const [home, setHome] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
   const [loginModal, setloginModal] = useState(false);
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
-  const logoutReqeust = () =>{
-    fetch('http://127.0.0.1:8000/accounts/logout', {
-      method:'POST',
-      credentials: 'include',
-    }).then(
-      setIsLogin(false)
-    )
-  }
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-  }
   
-  const requestLogin = (id, password) => {
-    console.log(id, password)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json',
-      'X-CSRFToken': getCookie('csrftoken') },
-      body: JSON.stringify({ username: id, password: password })
-    };
-  
-    fetch('http://127.0.0.1:8000/accounts/login', requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Login success:', data);
-        // 로그인 성공시 처리할 코드 작성
-        setIsLogin(true);
-      })
-      .catch(error => {
-        console.error('Login error:', error);
-        // 로그인 실패시 처리할 코드 작성
-      });
-  }
-
-
   return (
     <div className="App">
       <GlobalStyle />
@@ -93,17 +41,8 @@ function App() {
             }}>기술블로그</Nav.Link>
             <Nav.Link className='nav-style' >채용공고</Nav.Link>
           </Nav>
-          {isLogin==false? <Nav className='login right' onClick={()=>{setloginModal(true);}}>로그인</Nav>:<Nav className='logout right' onClick={logoutReqeust()}>로그아웃</Nav>}
-          {loginModal?     
-          <div className='loginform'>
-      <div className="id_pw_wrap">
-        <input type="text" placeholder='아이디' onChange={e=>{setId(e.target.value)}}/>
-        <input type="password" placeholder='비밀번호' onChange={e=>setPassword(e.target.value)}/>
-      </div>
-      <div className="btn_login_wrap">
-        <button className="loginbtn" onClick={()=>requestLogin(id, password)}><span className='btntext'>가자</span></button>
-      </div>
-    </div>:null}
+          {isLogin? <Nav>로그아웃</Nav>:
+          <Nav>로그인</Nav>}
         </Container>
       </Navbar>
       </header>
