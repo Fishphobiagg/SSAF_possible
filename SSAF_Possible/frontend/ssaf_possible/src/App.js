@@ -10,12 +10,8 @@ import Info from './routes/Info';
 
 function App() {
   
-  // let [article, articleSet] = useState(false)
-  // let [recruitment, recruitmentSet] = useState(false)
 
-  // 변수명 신경쓰기, useState 반환 배열의 두번째 요소는 상태값을 바꿔주는 함수이기 때문에 일반적으로 동사 먼저 기술
-  // 보통 함수에는 동사 + 목적어 로 네이밍 컨벤션을 가져감
-  // 그리고 JS에서는 마지막에 ; 붙이는거 까먹지 마십쇼 
+  // 안쓰는 변수들은 왜 남겨두신 건가요?
   const [article, setArticle] = useState(false);
   const [recruitment, setRecruitment] = useState(false);
   const [home, setHome] = useState(true);
