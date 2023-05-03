@@ -42,7 +42,13 @@ def ent_tag(request, ent):
 
 @api_view(['POST'])
 def scrap(request, article_pk):
-    if request.method == 'POST':
+    # 현업에서는 아래 코드 처럼 인덴트 깊이가 깊어지는 것을 선호하지 않음. 가독성 때문
+    # 아래 코드는 if request.method != 'POST': (에러 처리) 로 수정하면 이후 로직에서는 인덴트가 깊어진 상태일 필요가 없음
+    # 무슨 말인지 이해가 잘 안된다면 Early Return 에 대해 구글링 해볼 것
+
+    # request.method 가 만약 POST가 아니라면 어떤 처리를 해주는지? 예외 처리 필요
+    # 또한 해당 if문이 진짜 필요한건지도 확인해볼 것. 데코레이터에 이미 명시를 했는데 이게 진짜 필요한건지 공부해보세요. 전 장고는 다까먹어서 몰겠음
+    if request.method == 'POST': 
         if request.user.is_authenticated:
             article = Article.objects.get(pk=article_pk)
             user = request.user
