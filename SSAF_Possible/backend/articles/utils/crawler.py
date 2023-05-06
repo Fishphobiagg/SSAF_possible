@@ -15,6 +15,7 @@ django.setup()
 
 def crawl_data():
     # kakao
+    # 주석으로 분리하지 말고 함수로 따로 빼서 선언한 다음 해당 함수에서 따로 뺀 함수를 호출하는 식으로 하면 가독성 측면이나 유지 보수 측면에서 더 좋을듯
     for i in range(1, 6):
         url = 'https://tech.kakao.com/blog/' + 'page' + '/' + str(i) + '/'    
         res = requests.get(url)
