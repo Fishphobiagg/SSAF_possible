@@ -2,21 +2,25 @@ from .models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        # ...
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 # Create your views here.
-@api_view(['POST'])
-def login(request):
-    # 일반적으로 서버 측에서는 패스워드에 대해 해싱 처리를 한 뒤에 저장함
-    # 그 이유는 해싱 처리를 하지 않으면 서버 개발자는 누구나 사용자의 실제 비밀번호를 확인할 수 있기 때문. 유출되었을 때도 문제 발생
-    # 해싱이란 단방향 암호화를 의미. 동일한 문자열을 동일한 해시 함수로 해싱 처리하면 항상 같은 암호화된 문자열이 반환
-    user = authenticate(request, username=request.POST.get('username'), password=request.POST.get('password'))
-    if user:
-        login(request, user)
-    else:
-        return JsonResponse({'message':'로그인 실패! 아디, 비번 확인해주세요'})
-def logout(request):
-    logout(request)
 
 @api_view(['POST'])
 def password_change(request):

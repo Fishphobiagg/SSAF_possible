@@ -21,6 +21,6 @@ urlpatterns = [
     # techblog 라우터에만 api 경로를 추가한 이유가 뭔지 궁금
     # 또한 디렉터리는 article로 작명했는데 여기선 왜 techblog 인지도 궁금
     # 마지막으로 REST API 에서는 복수형(~s)를 권장하지 않음. REST API의 개념에 대해 조금 공부해보면 좋을 것. REST API는 일종의 약속 같은건데 잘 지킬 경우 협업이나 회사에서 도움이 될 것
-    path('api/techblog/', include('articles.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('article/', include('articles.urls')),
+    path('account/', include('accounts.urls')),
 ]
