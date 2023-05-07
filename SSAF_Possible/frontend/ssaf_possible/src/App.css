@@ -5,55 +5,8 @@
   text-align: center;
 }
 
-.nav{
-  margin-bottom: 20px;
-  font-size: 17px;
-  font-weight: bold;
-  height: 88px;
-}
-
 .article{
   display: flex;
   justify-content: center;
 }
 
-header{
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav-style{
-  margin-left: 5px;
-  margin-right: 5px;
-  text-decoration: none;
-  position: relative;
-}
-
-.nav-style::before {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: 0;
-  left: 50%;
-  background-color: #000;
-  visibility: hidden;
-  transform: translateX(-50%);
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.nav-style:hover::before, a:focus::before{
-  visibility: visible;
-  width: 100%;
-  
-}
-
-.nav-style:focus{
-  outline: none;
-}
-
-.right{
-  margin-left: 20px;
-  cursor: pointer;
-}

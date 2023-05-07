@@ -7,8 +7,8 @@ function Article() {
   // 만약 이렇게 일일이 하드타이핑 해두면, 이후에 서버 포트 번호나 url이 변경됐을 때 모든 코드 다 뒤져가면서 수정해야 함
 
   // basic_url을 상태관리하여 검색주잉ㄹ 경우에는 검색 api, 전체 열람 중일 경우에는 전체 열람 api의 url을 할당해야할듯
-  const articles_api = 'http://127.0.0.1:8000/api/techblog/articles/?page='
-  const set_api = (keyword) => 'http://127.0.0.1:8000/api/techblog/search/' + keyword + '?page='
+  const articles_api = 'http://127.0.0.1:8000/articles/list/?page='
+  const set_api = (keyword) => 'http://127.0.0.1:8000/article/search/' + keyword + '?page='
   const [data, setData] = useState({results: [], count: 0});
   const [basicUrl, setBasicUrl] = useState(articles_api)
 

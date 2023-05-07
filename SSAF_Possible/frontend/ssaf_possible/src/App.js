@@ -1,49 +1,27 @@
 import './App.css';
-import {Nav, Navbar, Container } from 'react-bootstrap';
-import Article from './routes/Article.js'
 import './font.css'
 import './Globalstyle.js'
 import GlobalStyle from './Globalstyle.js';
-import { useState } from 'react';
-import Info from './routes/Info';
+import Info from './components/Info';
+import LoginPage from './routes/Login';
+import {BrowserRouter as Router, Routes, Route, Link, Redirect, redirect} from 'react-router-dom'
+import Navheader from './components/Header';
+import Article from './routes/Article';
 
 
 function App() {
-  
-
-  // 안쓰는 변수들은 왜 남겨두신 건가요?
-  const [article, setArticle] = useState(false);
-  const [recruitment, setRecruitment] = useState(false);
-  const [home, setHome] = useState(true);
-  const [isLogin, setIsLogin] = useState(false);
-  const [loginModal, setloginModal] = useState(false);
-  
+  const authenticated = false;
   return (
     <div className="App">
       <GlobalStyle />
-      <header>
-      <Navbar bg="light" variant="light" className='nav sticky-top'>
-        <Container>
-          <Navbar.Brand href="#home" onClick={()=>{
-              setArticle(false);
-              setRecruitment(false);
-              setHome(true);
-            }} className='nav-home'>쌒!가능</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link className='nav-style' onClick={()=>{
-              setArticle(true);
-              setRecruitment(false);
-              setHome(false);
-            }}>기술블로그</Nav.Link>
-            <Nav.Link className='nav-style' >채용공고</Nav.Link>
-          </Nav>
-          {isLogin? <Nav>로그아웃</Nav>:
-          <Nav>로그인</Nav>}
-        </Container>
-      </Navbar>
-      </header>
-      {article && <Article/>}
-      {home && <Info/>}
+    <Router>
+    <Navheader className='nav-basic-style'></Navheader>
+      <Routes>
+        <Route element={<LoginPage/>} path="/login"></Route>
+        <Route element={<Info/>} path="/" exact></Route>
+        <Route element={<Article/>} path="/article"/>
+      </Routes>
+    </Router>
     </div>
   );
 }
