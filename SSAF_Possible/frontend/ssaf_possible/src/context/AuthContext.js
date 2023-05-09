@@ -35,10 +35,34 @@ export const AuthProvider = ({ children }) => {
       alert('Somthing went wrong')
     }
   };
+  let logoutUser = ()=>{
+    setAuthTokens(null)
+    setUser(null)
+    localStorage.removeItem('authTokens')
+    Navigate('/login')
+  };
+
+  const updateToken = async () => {
+    let response = await fetch('http://127.0.0.1:8000/account/token',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({'refresh':authTokens.refresh})
+    })
+    let data = await response.json()
+
+    if(resoponse.status===200){
+      setUser(jwt_decode(data.access))
+      localStorage.setItem('authTokens', JSON.stringify(data))
+      Navigate('/article')
+    }
+  }
 
   const contextData = {
     user:user,
     loginUser: loginUser,
+    logoutUser: logoutUser,
   };
 
   return (
